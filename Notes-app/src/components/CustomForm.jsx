@@ -20,7 +20,10 @@ const CustomForm = ({ addNote }) => {
             onSubmit={handleFormSubmit}
         >
             <p>{note}</p>
-            <div className="wrapper">
+            <div 
+            className="wrapper"
+            style={{ display: "flex", gap: "1rem" }}
+            >
                 <input
                     type="text"
                     id="note"
@@ -38,14 +41,14 @@ const CustomForm = ({ addNote }) => {
                 >
                     Add a note
                 </label> */}
+                <button
+                    className="btn"
+                    aria-label="Add Note"
+                    type="submit"
+                >
+                    Add
+                </button>
             </div>
-            <button
-                className="btn"
-                aria-label="Add Note"
-                type="submit"
-            >
-                Add
-            </button>
         </form>
     )
 }
