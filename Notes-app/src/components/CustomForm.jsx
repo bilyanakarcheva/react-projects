@@ -19,7 +19,6 @@ const CustomForm = ({ addNote }) => {
             className="notes-form"
             onSubmit={handleFormSubmit}
         >
-            <p>{note}</p>
             <div 
             className="wrapper"
             style={{ display: "flex", gap: "1rem" }}
