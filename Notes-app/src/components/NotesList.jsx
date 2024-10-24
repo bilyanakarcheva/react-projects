@@ -1,6 +1,6 @@
 import NoteItem from "./NoteItem"
 
-const NotesList = ({ notes }) => {
+const NotesList = ({ notes, deleteNote, updateNote }) => {
     return (
         <ul style={{ display: 'grid', gap: '1.5em', margin: '2em'}}>
             {/* Notes List */}
@@ -8,6 +8,8 @@ const NotesList = ({ notes }) => {
                 <NoteItem
                     key={note.id}
                     note={note}
+                    deleteNote={deleteNote}
+                    updateNote={updateNote}
                 />
             ))}
         </ul>
