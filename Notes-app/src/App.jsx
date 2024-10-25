@@ -3,9 +3,10 @@ import './App.css'
 // custom components
 import CustomForm from './components/CustomForm'
 import NotesList from './components/NotesList';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useLocalStorage('notes-storage', []);
 
   const addNote = (note) => {
     setNotes(currNotes => [...currNotes, note]);
@@ -17,11 +18,8 @@ function App() {
   }
 
   const updateNote = (id, updatedNote) => {
-    setNotes(currNotes => currNotes.map(note => {
-      note.id === id
-        ? updatedNote
-        : note
-    }
+    setNotes(currNotes => currNotes.map(note => 
+      note.id === id ? updatedNote : note
     ));
   };
 
