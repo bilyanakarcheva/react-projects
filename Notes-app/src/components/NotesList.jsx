@@ -1,8 +1,17 @@
 import NoteItem from "./NoteItem"
+import {
+    fetchNotesFromAPI,
+    addNoteAPI,
+    toggleNoteAPI,
+    deleteNoteAPI,
+    updateNoteAPI
+
+} from './apiHelper'
+
 
 const NotesList = ({ notes, deleteNote, updateNote }) => {
     return (
-        <ul style={{ display: 'grid', gap: '1.5em', margin: '2em'}}>
+        <ul style={{ display: 'grid', gap: '1.5em', margin: '2em' }}>
             {/* Notes List */}
             {notes.sort((a, b) => b.id - a.id).map(note => (
                 <NoteItem
