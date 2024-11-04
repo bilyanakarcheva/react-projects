@@ -11,7 +11,7 @@ import {
 //The controller takes care of the request and response, and the model takes care of the data.
 export async function getNotesController(req, res) {
     try {
-        const notes = await getAllNotesModel();
+        const notes = getAllNotesModel();
         if (notes) {
             res.status(200).json(notes);
         } else {
@@ -37,7 +37,7 @@ export async function addNoteController(req, res) {
 export async function toggleNoteController(req, res) {
     try {
         const toggledId = req.params.id;
-        const toggled = await toggleNoteModel(toggledId);
+        const toggled = toggleNoteModel(toggledId);
         if (toggled) {
             res.status(200).json(toggled);
         } else {
@@ -52,7 +52,7 @@ export async function toggleNoteController(req, res) {
 export async function deleteNoteController(req, res) {
     try {
         const deletedId = req.params.id;
-        const deletedNote = await deleteNoteModel(deletedId);
+        const deletedNote = deleteNoteModel(deletedId); 
         if (deletedNote) {
             res.status(200).json({ message: `Deleted note: ${deletedNote}` });
         } else {
@@ -67,7 +67,7 @@ export async function updateNoteController(req, res) {
     try {
         const updateId = req.params.id;
         const updatedDescription = req.body;
-        const updatedNote = await updateNoteModel(updateId, updatedDescription);
+        const updatedNote = updateNoteModel(updateId, updatedDescription);
         if (updatedNote) {
             res.status(200).json({ message: `Note was updated: ${updatedNote}` });
         } else {
