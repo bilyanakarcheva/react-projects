@@ -59,7 +59,7 @@ export const deleteNoteAPI = async (noteId) => {
             method: 'DELETE',
         });
         if (response.ok) {
-            return response.json();
+            return true;
         } else {
             throw new Error(`Failed deleting note`);
         }
