@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const NoteItem = ({ note, deleteNote, updateNote }) => {
+const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedNote, setUpdatedNote] = useState(note);
 
@@ -41,6 +41,10 @@ const NoteItem = ({ note, deleteNote, updateNote }) => {
         </div>
       ) : (
         <div className='btn-group'>
+          <input
+            type='checkbox'
+          >
+          </input>
           <label
             htmlFor={note.id}
           >
