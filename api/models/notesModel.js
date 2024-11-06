@@ -1,14 +1,14 @@
 let notes = [{
     id: 1,
-    description: 'This is a note',
+    details: 'This is a note',
     toggle: false
 }, {
     id: 2,
-    description: 'This is another note',
+    details: 'This is another note',
     toggle: false
 }, {
     id: 3,
-    description: 'This is a third note',
+    details: 'This is a third note',
     toggle: false
 }]; 
 
@@ -24,7 +24,7 @@ export function addNoteModel(note) {
     const newNote = {
         id: Date.now(),
         ...note,
-        description: note,
+        details: note.details,
         toggle: false
     };
     notes.push(newNote);
