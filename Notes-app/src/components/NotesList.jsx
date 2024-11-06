@@ -9,7 +9,7 @@ import {
 } from './apiHelper'
 
 
-const NotesList = ({ notes, deleteNote, updateNote }) => {
+const NotesList = ({ notes, deleteNote, updateNote, toggleNote }) => {
     return (
         <ul style={{ display: 'grid', gap: '1.5em', margin: '2em' }}>
             {/* Notes List */}
