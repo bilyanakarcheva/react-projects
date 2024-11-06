@@ -69,7 +69,7 @@ export async function updateNoteController(req, res) {
         const updatedDescription = req.body;
         const updatedNote = updateNoteModel(updateId, updatedDescription);
         if (updatedNote) {
-            res.status(200).json({ message: `Note was updated: ${updatedNote}` });
+            res.status(200).json(updatedNote);
         } else {
             res.status(404).json('Note not found');
         }
