@@ -65,9 +65,9 @@ export async function deleteNoteController(req, res) {
 
 export async function updateNoteController(req, res) {
     try {
-        const updateId = req.params.id;
-        const updatedDescription = req.body;
-        const updatedNote = updateNoteModel(updateId, updatedDescription);
+        const id = req.params.id; // the params that we receive from the client are always in string format, that is why we need to parse it to an integer
+        const note = req.body;
+        const updatedNote = updateNoteModel(id, note);
         if (updatedNote) {
             res.status(200).json(updatedNote);
         } else {
