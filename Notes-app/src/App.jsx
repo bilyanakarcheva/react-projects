@@ -37,9 +37,9 @@ function App() {
     }
   }
 
-  const updateNote = async (id, updatedNote) => {
-    const updated = await updateNoteAPI(id, updatedNote);
-    if (updated) {
+  const updateNote = async (id, note) => {
+    const updatedNote = await updateNoteAPI(id, note);
+    if (updatedNote) {
       setNotes(currNotes => currNotes.map(note =>
         note.id === id ? updatedNote : note
       ));
