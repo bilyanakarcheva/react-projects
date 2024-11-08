@@ -69,12 +69,12 @@ export const deleteNoteAPI = async (noteId) => {
     }
 }
 
-export const updateNoteAPI = async (noteId, noteDescription) => {
+export const updateNoteAPI = async (id, note) => {
     try {
-        const response = await fetch(`${baseUrl}/updateNote/${noteId}`, {
+        const response = await fetch(`${baseUrl}/updateNote/${id}`, {
             method: 'PUT',
             headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({ description: noteDescription})
+            body: JSON.stringify(note)
         });
         if (response.ok) {
             return await response.json();
