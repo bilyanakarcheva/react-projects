@@ -18,10 +18,10 @@ router.get('/', getNotesController);
 router.post('/', addNoteController);
 
 // Update (Toggle)
-router.put('/', toggleNoteController);
+router.put('/:id', toggleNoteController);
 
 // Delete
-router.delete('/', deleteNoteController);
+router.delete('/:id', deleteNoteController);
 
 // Update (Note description)
-router.put('/updateNote', updateNoteController);
+router.put('/updateNote/:id', updateNoteController);
