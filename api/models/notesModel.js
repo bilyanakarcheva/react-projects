@@ -36,7 +36,7 @@ export function toggleNoteModel(id) {
     //and then toggles the value of the toggle property. This approach is more efficient than using the map method because 
     //it only updates the specific note that needs to be toggled, instead of updating all notes in the array. The time complexity of this code is 
     //O(n) (linear) because it uses the findIndex method to find the index of the note with the specific id.
-    const toggledNoteIndex = notes.findIndex(note => note.id === id);
+    const toggledNoteIndex = notes.findIndex(note => note.id === parseInt(id));
     
     if (toggledNoteIndex <= -1) { 
         return null;
@@ -58,7 +58,7 @@ export function deleteNoteModel(id) {
     // the specific note that needs to be deleted, instead of creating a new array with all notes except the one to be deleted. The time complexity of this
     // code is O(n) (linear) because it uses the findIndex method to find the index of the note with the specific id.
     // The code below is with time complexity O(n^2) because it uses the filter method to create a new array with all notes except the one to be deleted.
-    const noteIndex = notes.findIndex(note => note.id === id);
+    const noteIndex = notes.findIndex(note => note.id === parseInt(id));
 
     if (noteIndex <= -1) {
         return null;
@@ -69,15 +69,15 @@ export function deleteNoteModel(id) {
     //notes = notes.filter(note => note.id !== id);
 }
 
-export function updateNoteModel(id, updatedDescription) {
-    const noteIndex = notes.findIndex(note => note.id === id);
+export function updateNoteModel(id, note) {
+    const noteIndex = notes.findIndex(note => note.id === parseInt(id)); 
 
     if (noteIndex <= -1) {
         return null;
     }
 
     const updatedNote = notes[noteIndex];
-    updatedNote.description = updatedDescription;
+    updatedNote.details = note.details;
     return updatedNote;
 }
 
