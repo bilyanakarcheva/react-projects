@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedNote, setUpdatedNote] = useState(note);
+  const [updatedNote, setUpdatedNote] = useState({ id: note.id, details: note.details ?? '' }); // This line initializes the updatedNote state with the note id and details. If the note details are null or undefined, it sets the details to an empty string.
 
   const handleDelete = () => {
     deleteNote(note.id);
@@ -21,14 +21,14 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
         <div className='btn-group'>
           <input
             type='text'
-            id={note.id}
-            value={updatedNote.details}
+            id={updatedNote.id}
+            value={updatedNote.details || ''}
             onInput={(e) => setUpdatedNote({...updatedNote, details: e.target.value})}
             maxLength={100}
           />
           <button
             style={{ background: 'green' }}
-            onClick={() => handleUpdate(note.id, updatedNote)}
+            onClick={() => handleUpdate(updatedNote.id, updatedNote)}
           >
           Save
           </button>
@@ -45,11 +45,11 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
             type='checkbox'
           >
           </input>
-          <label
+          {/* <label
             htmlFor={note.id}
-          >
+          > */}
             <p>{updatedNote.details}</p>
-          </label>
+          {/* </label> */}
           <button
             style={{ background: 'yellow', color: 'black' }}
             onClick={() => setIsEditing(true)}>
