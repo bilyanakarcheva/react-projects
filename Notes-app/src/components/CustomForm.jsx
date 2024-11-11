@@ -26,20 +26,20 @@ const CustomForm = ({ addNote }) => {
                 <input
                     type="text"
                     id="note"
-                    className="input"
+                    className="form-input"
                     value={note}
                     onInput={(e) => setNote(e.target.value)}
                     required // This shows the pop-up message to add something if your field is empty.
                     autoFocus
                     maxLength={100}
-                    placeholder="Add a note..."
+                    placeholder="Add a note"
                 />
-                {/* <label
+                <label
                     htmlFor="note"
-                    className="label"
+                    className="form-label"
                 >
                     Add a note
-                </label> */}
+                </label>
                 <button
                     className="btn"
                     aria-label="Add Note"
