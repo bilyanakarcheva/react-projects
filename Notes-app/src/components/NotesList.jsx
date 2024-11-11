@@ -1,13 +1,4 @@
 import NoteItem from "./NoteItem"
-import {
-    fetchNotesFromAPI,
-    addNoteAPI,
-    toggleNoteAPI,
-    deleteNoteAPI,
-    updateNoteAPI
-
-} from './apiHelper'
-
 
 const NotesList = ({ notes, deleteNote, updateNote, toggleNote }) => {
     return (
@@ -19,6 +10,7 @@ const NotesList = ({ notes, deleteNote, updateNote, toggleNote }) => {
                     note={note}
                     deleteNote={deleteNote}
                     updateNote={updateNote}
+                    toggleNote={toggleNote}
                 />
             ))}
         </ul>
