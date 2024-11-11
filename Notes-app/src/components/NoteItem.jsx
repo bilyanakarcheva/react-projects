@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedNote, setUpdatedNote] = useState({ id: note.id, details: note.details ?? '' }); // This line initializes the updatedNote state with the note id and details. If the note details are null or undefined, it sets the details to an empty string.
+  const [updatedNote, setUpdatedNote] = useState({...note}); // This line initializes the updatedNote state with the note id and details. If the note details are null or undefined, it sets the details to an empty string.
 
   const handleDelete = () => {
     deleteNote(note.id);
@@ -12,6 +12,15 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
     updateNote(id, updatedNote);
     setIsEditing(false)
   }
+
+  const handleToggleNote = () => {
+    console.log(updatedNote);
+    toggleNote(updatedNote.id);
+  }
+
+  useEffect(() => {
+    setUpdatedNote({...note});
+  }, [])
 
   return (
     <li
@@ -43,6 +52,8 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
         <div className='btn-group'>
           <input
             type='checkbox'
+            id={updatedNote.id}
+            onClick={() => handleToggleNote()}
           >
           </input>
           {/* <label
