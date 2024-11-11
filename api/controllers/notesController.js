@@ -36,8 +36,8 @@ export async function addNoteController(req, res) {
 
 export async function toggleNoteController(req, res) {
     try {
-        const toggledId = req.params.id;
-        const toggled = toggleNoteModel(toggledId);
+        const id = req.params.id;
+        const toggled = toggleNoteModel(id);
         if (toggled) {
             res.status(200).json(toggled);
         } else {
