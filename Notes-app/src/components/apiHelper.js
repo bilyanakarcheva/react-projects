@@ -1,5 +1,3 @@
-import { deleteNoteController } from "../../../api/controllers/notesController";
-
 const baseUrl = 'http://localhost:3001/api/notes';
 // We use apiHelper to make requests to our backend
 // and we need to write the functions to make the requests for each endpoint
