@@ -20,8 +20,7 @@ const CustomForm = ({ addNote }) => {
             onSubmit={handleFormSubmit}
         >
             <div 
-            className="wrapper"
-            style={{ display: "flex", gap: "1rem" }}
+            className="input-wrapper"
             >
                 <input
                     type="text"
@@ -30,9 +29,10 @@ const CustomForm = ({ addNote }) => {
                     value={note}
                     onInput={(e) => setNote(e.target.value)}
                     required // This shows the pop-up message to add something if your field is empty.
-                    autoFocus
+                    autoFocus // This focuses the input field when the page loads.
                     maxLength={100}
                     placeholder="Add a note"
+                    autoComplete="given-name"
                 />
                 <label
                     htmlFor="note"
@@ -41,9 +41,9 @@ const CustomForm = ({ addNote }) => {
                     Add a note
                 </label>
                 <button
+                    type="submit"
                     className="btn"
                     aria-label="Add Note"
-                    type="submit"
                 >
                     Add
                 </button>
