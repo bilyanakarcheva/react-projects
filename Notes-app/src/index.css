@@ -7,14 +7,35 @@
 } */
 
 :root {
+  --_hue: 240; 
+  --_size: 2.2rem;
+  --_radius: .2em;
+  --_tspeed_fast: 150ms; /* what is transition speed? - The transition-timing-function property specifies the speed curve of the transition effect. It can have the following values: ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n), initial, inherit. */
+  --_tspeed_slow: 400ms;
+  --_ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15); 
+
+  /* Light theme */
+  --bg--light: var(--_hue) 30% 94%; /* what is this? - It is a CSS function that creates a color value from a hue, saturation, and lightness. */
+  --txt--light: var(--_hue) 40% 5%;
+  --accent--light: var(--_hue) 55% 50%;
+  --muted--light: var(--_hue) 30% 99%;
+
+  /* Dark theme */
+  --bg--dark: var(--_hue) 15% 10%;
+  --txt--dark: var(--_hue) 30% 88%;
+  --accent--dark: var(--_hue) 50% 50%;
+  --muted--dark: var(--_hue) 20% 4%;
+
+  --bg: var(--bg--dark);
+  --txt: var(--txt--dark);
+  --accent: var(--accent--dark);
+  --muted: var(--muted--dark);
+  color-scheme: dark;
+
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  --_hue: 245;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,24 +43,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
+  display: grid;
+  place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100vh; /* what is vh? - vh is a CSS unit that represents the height of the viewport. 1vh is equal to 1% of the viewport height. */
+  /* what is viewport? - The viewport is the user's visible area of a web page. */
+  font-family: inherit;
+  background-color: hsl(var(--bg)); /* what is hsl? - The hsl() function in CSS is used to specify colors using the Hue-Saturation-Lightness model. */
+  color: hsl(var(--txt));
+}
+
+::selection {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--bg));
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: calc(var(--_size) * 1.5);  
   line-height: 1.1;
 }
 
@@ -47,17 +69,17 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
   color: inherit;
+  font: inherit;
 }
 button:hover {
   border-color: #646cff;
-  box-shadow: 1px 1px 1px 1px #535bf2;	/*how to add shadow to button - box-shadow: h-shadow v-shadow blur spread color */
+  box-shadow: 0 0 0 2px #535bf2;	/*how to add shadow to button - box-shadow: h-shadow v-shadow blur spread color */
 }
 button:focus,
 button:focus-visible {
@@ -66,18 +88,94 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --bg: var(--bg--light);
+    --txt: var(--txt--light);
+    --accent: var(--accent--light);
+    --muted: var(--muted--light);
+    color-scheme: light;
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
 
 .btn-group {
   display: flex;
   gap: 1em;
+}
+
+input, label {
+  font: inherit;
+}
+
+.container {
+  margin-inline: max(calc((100vw - 70rem) / 2), 1,5rem);
+  display: grid;
+  gap: 1.5vmax; /* what is vmax? - vmax is a CSS unit that represents the larger of the two: vw, vh. */
+  text-align: center;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 1.5em;
+  position: relative;
+  margin-block-start: .6em;
+}
+
+form {
+  display: grid;
+  gap: .8em;
+  max-width: calc(var(--_size) * 20);
+  font-size: calc(var(--_size) * 0.5);;
+  text-align: left;
+  place-items: center;
+  padding-block: 0.5em;
+}
+
+.form-label {
+  text-transform: uppercase;
+  font-size: .9em;
+  letter-spacing: .05em;
+  margin-inline: .5em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: .1em, .35em;
+  background-color: hsl(var(--muted));
+  transition: 
+    transform  var(--_tspeed_fast) var(--_ttype_squish),
+    background-color var(--_tspeed_fast) var(--_ttype_squish);
+  /* display: none; */
+}
+
+.form-input {
+  border: none;
+  border-radius: var(--_radius);
+  padding: .35em .75em;
+  width: 100%;
+  background-color: hsl(var(--muted));
+  caret-color: hsl(var(--accent));
+  box-shadow: 
+    0 0 0 -.1em hsl(var(--bg)), 
+    0 0 0 -.2em hsl(var(--accent) / .8);
+  transition:
+    box-shadow var(--_tspeed_fast) var(--_ttype_squish);
+}
+
+.form-input::placeholder {
+  opacity: 0;
+}
+
+.form-input:focus ~ .form-label,
+.form-input:not(:placeholder-shown) ~ .form-label {
+  transform: translate3d(0, -2.75em, 0);
+  background-color: hsl(var(--bg));
+  color: hsl(var(--accent) );
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 .2em hsl(var(--bg) ), 
+    0 0 0 .4em hsl(var(--accent) / .8);
 }
