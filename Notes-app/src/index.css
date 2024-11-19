@@ -1,13 +1,13 @@
-/* *,
-*::after /* what does this do?  - It selects all elements and pseudo-elements 
+*,
+*::after /* what does this do?  - It selects all elements and pseudo-elements */
 *::before {
-  box-sizing: border-box;
+  box-sizing: border-box; /* border-box is the default box-sizing model. The width and height properties include the content, padding, and border, but not the margin. */
   margin: 0;
   padding: 0;
-} */
+}
 
 :root {
-  --_hue: 240; 
+  --_hue: 780; 
   --_size: 2.2rem;
   --_radius: .2em;
   --_tspeed_fast: 150ms; /* what is transition speed? - The transition-timing-function property specifies the speed curve of the transition effect. It can have the following values: ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n), initial, inherit. */
@@ -15,17 +15,19 @@
   --_ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15); 
 
   /* Light theme */
-  --bg--light: var(--_hue) 30% 94%; /* what is this? - It is a CSS function that creates a color value from a hue, saturation, and lightness. */
-  --txt--light: var(--_hue) 40% 5%;
-  --accent--light: var(--_hue) 55% 50%;
-  --muted--light: var(--_hue) 30% 99%;
+  --bg--light: var(--_hue) 40% 90%; /* what is this? - It is a CSS function that creates a color value from a hue, saturation, and lightness. */
+  --txt--light: var(--_hue) 40% 7%; /* the first value is the hue itself, the second value is saturation, and the third value is lightness. */
+  --accent--light: var(--_hue) 55% 55%;
+  --muted--light: var(--_hue) 40% 94%;
+  /* --muted--light: calc(var(--_hue) + 190) 30% 99%; */
 
   /* Dark theme */
-  --bg--dark: var(--_hue) 15% 10%;
+  --bg--dark: var(--_hue) 20% 13%;
   --txt--dark: var(--_hue) 30% 88%;
   --accent--dark: var(--_hue) 50% 50%;
-  --muted--dark: var(--_hue) 20% 4%;
+  --muted--dark: var(--_hue) 40% 4%;
 
+ /* Default theme - Dark*/
   --bg: var(--bg--dark);
   --txt: var(--txt--dark);
   --accent: var(--accent--dark);
@@ -34,13 +36,21 @@
 
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* line-height: 1.5; */
   font-weight: 400;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* prefers reduced motion*/
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --_tspeed_fast: 50ms;
+    --_tspeed_slow: 50ms;
+  }
 }
 
 body {
@@ -67,19 +77,28 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border: none;
+  padding: 0.6em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: hsl(var(--accent));
   cursor: pointer;
   transition: border-color 0.25s;
   color: inherit;
   font: inherit;
+  /* min-width: 2.5em;  */
+  /* Adjust this value as needed to maintain the button size */
+  /* box-shadow: 0 0 0 0.1em hsl(var(--accent)); */
+  text-align: center;
+}
+
+.btn-secondary {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--txt));
 }
 button:hover {
-  border-color: #646cff;
-  box-shadow: 0 0 0 2px #535bf2;	/*how to add shadow to button - box-shadow: h-shadow v-shadow blur spread color */
+  border-color: hsl(var(--accent));
+  box-shadow: inherit;	/*how to add shadow to button - box-shadow: h-shadow v-shadow blur spread color */
 }
 button:focus,
 button:focus-visible {
@@ -95,13 +114,19 @@ button:focus-visible {
     color-scheme: light;
   }
   a:hover {
-    color: #747bff;
+    color: hsl(var(--accent));
   }
 }
 
 .btn-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 1em;
+  justify-content: center;
+}
+
+.btn {
+  font-size: calc(var(--_size) / 2.2);
 }
 
 input, label {
@@ -109,7 +134,7 @@ input, label {
 }
 
 .container {
-  margin-inline: max(calc((100vw - 70rem) / 2), 1,5rem);
+  margin-inline: max(calc((100vw - 70rem) / 2), 1.5rem);
   display: grid;
   gap: 1.5vmax; /* what is vmax? - vmax is a CSS unit that represents the larger of the two: vw, vh. */
   text-align: center;
@@ -179,3 +204,4 @@ form {
     0 0 0 .2em hsl(var(--bg) ), 
     0 0 0 .4em hsl(var(--accent) / .8);
 }
+
