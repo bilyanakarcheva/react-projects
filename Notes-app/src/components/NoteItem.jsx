@@ -1,4 +1,9 @@
 import { useEffect, useState } from 'react';
+import { PencilSquareIcon } from '@heroicons/react/24/outline'
+import { TrashIcon } from '@heroicons/react/24/outline'
+import { CheckIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
+
 
 const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -36,16 +41,24 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
             maxLength={100}
           />
           <button
-            style={{ background: 'green' }}
+            className='btn'
+            // style={{ background: 'green' }}
             onClick={() => handleUpdate(updatedNote.id, updatedNote)}
           >
-          Save
+            <CheckIcon
+              className='btn'
+              style={{ width: '24px', height: '24px' }}
+            />
           </button>
           <button
-            style={{ background: 'red' }}
+            className='btn-secondary'
+            // style={{ background: 'red' }}
             onClick={() => setIsEditing(false)}
           >
-            Cancel
+            <XMarkIcon
+              className='btn'
+              style={{ width: '24px', height: '24px' }} 
+            />
           </button>
         </div>
       ) : (
@@ -62,15 +75,22 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
             <p>{updatedNote.details}</p>
           {/* </label> */}
           <button
-            style={{ background: 'yellow', color: 'black' }}
+            className='btn'
+            // style={{ background: 'yellow', color: 'black' }}
             onClick={() => setIsEditing(true)}>
-            Update
+              <PencilSquareIcon 
+                className='btn'
+                style={{ width: '24px', height: '24px' }}
+               />
           </button>
           <button
-            style={{ background: 'red' }}
+            className='btn-secondary'
             onClick={handleDelete}
           >
-            Delete
+            <TrashIcon 
+              className='btn'
+              style={{ width: '24px', height: '24px' }}
+            />
           </button>
         </div>
       )}
