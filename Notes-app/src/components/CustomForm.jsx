@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { PlusIcon  } from '@heroicons/react/24/outline'
+
 
 const CustomForm = ({ addNote }) => {
     const [note, setNote] = useState("");
@@ -42,10 +44,13 @@ const CustomForm = ({ addNote }) => {
                 </label>
                 <button
                     type="submit"
-                    className="btn"
+                    // className="btn"
                     aria-label="Add Note"
                 >
-                    Add
+                    <PlusIcon 
+                        className="btn"
+                        style={{ width: "24px", height: "24px" }}
+                        />
                 </button>
             </div>
         </form>
