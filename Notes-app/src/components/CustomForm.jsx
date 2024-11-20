@@ -43,12 +43,11 @@ const CustomForm = ({ addNote }) => {
                     Add a note
                 </label>
                 <button
+                    className="btn"
                     type="submit"
-                    // className="btn"
                     aria-label="Add Note"
                 >
                     <PlusIcon 
-                        className="btn"
                         style={{ width: "24px", height: "24px" }}
                         />
                 </button>
