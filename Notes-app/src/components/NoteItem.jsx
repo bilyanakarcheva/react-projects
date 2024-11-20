@@ -46,17 +46,14 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
             onClick={() => handleUpdate(updatedNote.id, updatedNote)}
           >
             <CheckIcon
-              className='btn'
               style={{ width: '24px', height: '24px' }}
             />
           </button>
           <button
-            className='btn-secondary'
-            // style={{ background: 'red' }}
+            className='btn btn-secondary'
             onClick={() => setIsEditing(false)}
           >
             <XMarkIcon
-              className='btn'
               style={{ width: '24px', height: '24px' }} 
             />
           </button>
@@ -79,16 +76,14 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
             // style={{ background: 'yellow', color: 'black' }}
             onClick={() => setIsEditing(true)}>
               <PencilSquareIcon 
-                className='btn'
                 style={{ width: '24px', height: '24px' }}
                />
           </button>
           <button
-            className='btn-secondary'
+            className='btn btn-secondary'
             onClick={handleDelete}
           >
             <TrashIcon 
-              className='btn'
               style={{ width: '24px', height: '24px' }}
             />
           </button>
