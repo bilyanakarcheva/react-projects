@@ -15,10 +15,10 @@
   --_ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15); 
 
   /* Light theme */
-  --bg--light: var(--_hue) 40% 90%; /* what is this? - It is a CSS function that creates a color value from a hue, saturation, and lightness. */
+  --bg--light: var(--_hue) 40% 85%; /* what is this? - It is a CSS function that creates a color value from a hue, saturation, and lightness. */
   --txt--light: var(--_hue) 40% 7%; /* the first value is the hue itself, the second value is saturation, and the third value is lightness. */
   --accent--light: var(--_hue) 55% 55%;
-  --muted--light: var(--_hue) 40% 94%;
+  --muted--light: var(--_hue) 40% 98%;
   /* --muted--light: calc(var(--_hue) + 190) 30% 99%; */
 
   /* Dark theme */
@@ -90,19 +90,53 @@ button {
   /* Adjust this value as needed to maintain the button size */
   /* box-shadow: 0 0 0 0.1em hsl(var(--accent)); */
   text-align: center;
+  box-shadow: 
+  .5em .1em .9em hsl(var(--accent) / .3),
+  0 0 0 -0.1em hsl(var(--bg)),
+  0 0 0 -0.2em hsl(var(--accent)); 
+transition: 
+  box-shadow var(--_tspeed_fast) var(--_ttype_squish),
+  background-color var(--_tspeed_fast) var(--_ttype_squish);
+}
+
+.btn {
+  font-size: calc(var(--_size) / 2.2);
+}
+
+.btn:where(:active, :hover) {
+  background-color: hsl(var(--accent) / .8);
 }
 
 .btn-secondary {
-  background-color: hsl(var(--muted));
+  /* background-color: hsl(var(--muted)); */
+  --accent: var(--muted);
   color: hsl(var(--txt));
 }
+
+.btn :where(svg, img) {
+  width: var(--_size);
+  height: var(--_size);
+}
+
 button:hover {
   border-color: hsl(var(--accent));
   box-shadow: inherit;	/*how to add shadow to button - box-shadow: h-shadow v-shadow blur spread color */
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+button:active {
+  transform: scale(0.95);
+}
+
+.btn:focus {
+  outline: none; /* what is focus ring? - The focus ring is a visual indicator that highlights the element that currently has keyboard focus. */
+}
+
+.btn:focus-visible {
+  /* box-shadow: 0 0 0 .2em hsl(var(--accent) / .8); */
+  box-shadow: 
+  0 0 0 hsl(var(--accent) / .3), 
+  0 0 0 .2em hsl(var(--bg)),
+  0 0 0 .4em hsl(var(--accent) / .6); /* what do the box-shadow elements do here? - The first value is the horizontal shadow, the second value is the vertical shadow, the third value is the blur radius, the fourth value is the spread radius, and the last value is the color of the shadow. */
 }
 
 @media (prefers-color-scheme: light) {
@@ -122,11 +156,8 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
+  align-items: center;
   justify-content: center;
-}
-
-.btn {
-  font-size: calc(var(--_size) / 2.2);
 }
 
 input, label {
