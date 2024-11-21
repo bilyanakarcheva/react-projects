@@ -3,11 +3,12 @@ import { PencilSquareIcon } from '@heroicons/react/24/outline'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import styles from './NoteItem.module.css'
 
 
 const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedNote, setUpdatedNote] = useState({...note}); // This line initializes the updatedNote state with the note id and details. If the note details are null or undefined, it sets the details to an empty string.
+  const [updatedNote, setUpdatedNote] = useState({ ...note }); // This line initializes the updatedNote state with the note id and details. If the note details are null or undefined, it sets the details to an empty string.
 
   const handleDelete = () => {
     deleteNote(note.id);
@@ -24,70 +25,76 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
   }
 
   useEffect(() => {
-    setUpdatedNote({...note});
+    setUpdatedNote({ ...note });
   }, [])
 
   return (
     <li
-      style={{ display: 'flex', gap: '2em' }}
+      className={styles['note-item']}
     >
       {isEditing ? (
-        <div className='btn-group'>
-          <input
-            type='text'
-            id={updatedNote.id}
-            value={updatedNote.details || ''}
-            onInput={(e) => setUpdatedNote({...updatedNote, details: e.target.value})}
-            maxLength={100}
-          />
-          <button
-            className='btn'
-            // style={{ background: 'green' }}
-            onClick={() => handleUpdate(updatedNote.id, updatedNote)}
-          >
-            <CheckIcon
-              style={{ width: '24px', height: '24px' }}
+        <>
+          <div className={styles['notes-group']}>
+            <input
+              type='text'
+              id={updatedNote.id}
+              value={updatedNote.details || ''}
+              onInput={(e) => setUpdatedNote({ ...updatedNote, details: e.target.value })}
+              maxLength={100}
             />
-          </button>
-          <button
-            className='btn btn-secondary'
-            onClick={() => setIsEditing(false)}
-          >
-            <XMarkIcon
-              style={{ width: '24px', height: '24px' }} 
-            />
-          </button>
-        </div>
+          </div>
+          <div className={styles['notes-group']}>
+            <button
+              className='btn'
+              onClick={() => handleUpdate(updatedNote.id, updatedNote)}
+            >
+              <CheckIcon
+                style={{ width: '24px', height: '24px' }}
+              />
+            </button>
+            <button
+              className='btn btn-secondary'
+              onClick={() => setIsEditing(false)}
+            >
+              <XMarkIcon
+                style={{ width: '24px', height: '24px' }}
+              />
+            </button>
+          </div>
+        </>
       ) : (
-        <div className='btn-group'>
-          <input
-            type='checkbox'
-            id={updatedNote.id}
-            onClick={() => handleToggleNote()}
-          >
-          </input>
-          {/* <label
+        <>
+          <div className={styles['notes-group']}>
+            <input
+              type='checkbox'
+              id={updatedNote.id}
+              onClick={() => handleToggleNote()}
+            >
+            </input>
+            {/* <label
             htmlFor={note.id}
           > */}
             <p>{updatedNote.details}</p>
-          {/* </label> */}
-          <button
-            className='btn'
-            // style={{ background: 'yellow', color: 'black' }}
-            onClick={() => setIsEditing(true)}>
-              <PencilSquareIcon 
+            {/* </label> */}
+          </div>
+          <div className={styles['notes-group']}>
+            <button
+              className='btn'
+              onClick={() => setIsEditing(true)}>
+              <PencilSquareIcon
                 style={{ width: '24px', height: '24px' }}
-               />
-          </button>
-          <button
-            className='btn btn-secondary'
-            onClick={handleDelete}
-          >
-            <TrashIcon 
-              style={{ width: '24px', height: '24px' }}
-            />
-          </button>
-        </div>
+              />
+            </button>
+            <button
+              className='btn btn-secondary'
+              onClick={handleDelete}
+            >
+              <TrashIcon
+                style={{ width: '24px', height: '24px' }}
+              />
+            </button>
+          </div>
+        </>
       )}
     </li>
   )
