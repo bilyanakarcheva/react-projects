@@ -60,7 +60,7 @@ function App() {
   return (
     <div className='container'>
       <header>
-        <h1>My Notes List</h1>
+        <h1>My Notes</h1>
       </header>
       <CustomForm addNote={addNote} />
       {notes && (
