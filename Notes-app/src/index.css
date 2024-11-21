@@ -1,22 +1,25 @@
 *,
 *::after /* what does this do?  - It selects all elements and pseudo-elements */
 *::before {
-  box-sizing: border-box; /* border-box is the default box-sizing model. The width and height properties include the content, padding, and border, but not the margin. */
+  box-sizing: border-box;  /* border-box is the default box-sizing model. The width and height properties include the content, padding, and border, but not the margin. */
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --_hue: 780; 
+  --_hue: 250;
   --_size: 2.2rem;
   --_radius: .2em;
-  --_tspeed_fast: 150ms; /* what is transition speed? - The transition-timing-function property specifies the speed curve of the transition effect. It can have the following values: ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n), initial, inherit. */
+  --_tspeed_fast: 150ms;
+  /* what is transition speed? - The transition-timing-function property specifies the speed curve of the transition effect. It can have the following values: ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n), initial, inherit. */
   --_tspeed_slow: 400ms;
-  --_ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15); 
+  --_ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15);
 
   /* Light theme */
-  --bg--light: var(--_hue) 40% 85%; /* what is this? - It is a CSS function that creates a color value from a hue, saturation, and lightness. */
-  --txt--light: var(--_hue) 40% 7%; /* the first value is the hue itself, the second value is saturation, and the third value is lightness. */
+  --bg--light: var(--_hue) 40% 85%;
+  /* what is this? - It is a CSS function that creates a color value from a hue, saturation, and lightness. */
+  --txt--light: var(--_hue) 40% 7%;
+  /* the first value is the hue itself, the second value is saturation, and the third value is lightness. */
   --accent--light: var(--_hue) 55% 55%;
   --muted--light: var(--_hue) 40% 98%;
   /* --muted--light: calc(var(--_hue) + 190) 30% 99%; */
@@ -27,7 +30,7 @@
   --accent--dark: var(--_hue) 50% 50%;
   --muted--dark: var(--_hue) 40% 4%;
 
- /* Default theme - Dark*/
+  /* Default theme - Dark*/
   --bg: var(--bg--dark);
   --txt: var(--txt--dark);
   --accent: var(--accent--dark);
@@ -36,13 +39,14 @@
 
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  /* line-height: 1.5; */
+  line-height: 1.5;
   font-weight: 400;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 /* prefers reduced motion*/
@@ -53,15 +57,29 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  :root {
+    --_size: 1.3rem;
+  }
+}
+
+html, body {
+  height: 100%;	
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   display: grid;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh; /* what is vh? - vh is a CSS unit that represents the height of the viewport. 1vh is equal to 1% of the viewport height. */
+  /* min-width: 320px; */
+  min-height: 100vh;
+  /* what is vh? - vh is a CSS unit that represents the height of the viewport. 1vh is equal to 1% of the viewport height. */
   /* what is viewport? - The viewport is the user's visible area of a web page. */
   font-family: inherit;
-  background-color: hsl(var(--bg)); /* what is hsl? - The hsl() function in CSS is used to specify colors using the Hue-Saturation-Lightness model. */
+  background-color: hsl(var(--bg));
+  /* what is hsl? - The hsl() function in CSS is used to specify colors using the Hue-Saturation-Lightness model. */
   color: hsl(var(--txt));
 }
 
@@ -71,7 +89,7 @@ body {
 }
 
 h1 {
-  font-size: calc(var(--_size) * 1.5);  
+  font-size: calc(var(--_size) * 1.5);
   line-height: 1.1;
 }
 
@@ -90,13 +108,13 @@ button {
   /* Adjust this value as needed to maintain the button size */
   /* box-shadow: 0 0 0 0.1em hsl(var(--accent)); */
   text-align: center;
-  box-shadow: 
-  .5em .1em .9em hsl(var(--accent) / .3),
-  0 0 0 -0.1em hsl(var(--bg)),
-  0 0 0 -0.2em hsl(var(--accent)); 
-transition: 
-  box-shadow var(--_tspeed_fast) var(--_ttype_squish),
-  background-color var(--_tspeed_fast) var(--_ttype_squish);
+  box-shadow:
+    .5em .1em .9em hsl(var(--accent) / .3),
+    0 0 0 -0.1em hsl(var(--bg)),
+    0 0 0 -0.2em hsl(var(--accent));
+  transition:
+    box-shadow var(--_tspeed_fast) var(--_ttype_squish),
+    background-color var(--_tspeed_fast) var(--_ttype_squish);
 }
 
 .btn {
@@ -120,7 +138,8 @@ transition:
 
 button:hover {
   border-color: hsl(var(--accent));
-  box-shadow: inherit;	/*how to add shadow to button - box-shadow: h-shadow v-shadow blur spread color */
+  box-shadow: inherit;
+  /*how to add shadow to button - box-shadow: h-shadow v-shadow blur spread color */
 }
 
 button:active {
@@ -128,16 +147,19 @@ button:active {
 }
 
 .btn:focus {
-  outline: none; /* what is focus ring? - The focus ring is a visual indicator that highlights the element that currently has keyboard focus. */
+  outline: none;
+  /* what is focus ring? - The focus ring is a visual indicator that highlights the element that currently has keyboard focus. */
 }
 
 .btn:focus-visible {
   /* box-shadow: 0 0 0 .2em hsl(var(--accent) / .8); */
-  box-shadow: 
-  0 0 0 hsl(var(--accent) / .3), 
-  0 0 0 .2em hsl(var(--bg)),
-  0 0 0 .4em hsl(var(--accent) / .6); /* what do the box-shadow elements do here? - The first value is the horizontal shadow, the second value is the vertical shadow, the third value is the blur radius, the fourth value is the spread radius, and the last value is the color of the shadow. */
+  box-shadow:
+    0 0 0 hsl(var(--accent) / .3),
+    0 0 0 .2em hsl(var(--bg)),
+    0 0 0 .4em hsl(var(--accent) / .6);
+  /* what do the box-shadow elements do here? - The first value is the horizontal shadow, the second value is the vertical shadow, the third value is the blur radius, the fourth value is the spread radius, and the last value is the color of the shadow. */
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -147,44 +169,42 @@ button:active {
     --muted: var(--muted--light);
     color-scheme: light;
   }
+
   a:hover {
     color: hsl(var(--accent));
   }
 }
 
-.btn-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
-  align-items: center;
-  justify-content: center;
-}
 
-input, label {
+
+input,
+label {
   font: inherit;
 }
 
 .container {
-  margin-inline: max(calc((100vw - 70rem) / 2), 1.5rem);
+  /* margin-inline: max(calc((100vw - 70rem) / 2), 1.5rem); */
   display: grid;
-  gap: 1.5vmax; /* what is vmax? - vmax is a CSS unit that represents the larger of the two: vw, vh. */
-  text-align: center;
+  gap: 1.5vmax;
+  /* what is vmax? - vmax is a CSS unit that represents the larger of the two: vw, vh. */
+  /* text-align: center; */
 }
 
 .input-wrapper {
   display: flex;
-  gap: 1.5em;
+  flex: 1 1 100%;
+  gap: 0.5em;
   position: relative;
   margin-block-start: .6em;
 }
 
 form {
   display: grid;
-  gap: .8em;
+  /* gap: .8em; */
   max-width: calc(var(--_size) * 20);
-  font-size: calc(var(--_size) * 0.5);;
+  font-size: calc(var(--_size) * 0.5);
   text-align: left;
-  place-items: center;
+  /* place-items: center; */
   padding-block: 0.5em;
 }
 
@@ -198,8 +218,8 @@ form {
   transform: translateY(-50%);
   padding: .1em, .35em;
   background-color: hsl(var(--muted));
-  transition: 
-    transform  var(--_tspeed_fast) var(--_ttype_squish),
+  transition:
+    transform var(--_tspeed_fast) var(--_ttype_squish),
     background-color var(--_tspeed_fast) var(--_ttype_squish);
   /* display: none; */
 }
@@ -211,8 +231,8 @@ form {
   width: 100%;
   background-color: hsl(var(--muted));
   caret-color: hsl(var(--accent));
-  box-shadow: 
-    0 0 0 -.1em hsl(var(--bg)), 
+  box-shadow:
+    0 0 0 -.1em hsl(var(--bg)),
     0 0 0 -.2em hsl(var(--accent) / .8);
   transition:
     box-shadow var(--_tspeed_fast) var(--_ttype_squish);
@@ -222,17 +242,25 @@ form {
   opacity: 0;
 }
 
-.form-input:focus ~ .form-label,
-.form-input:not(:placeholder-shown) ~ .form-label {
+.form-input:focus~.form-label,
+.form-input:not(:placeholder-shown)~.form-label {
   transform: translate3d(0, -2.75em, 0);
   background-color: hsl(var(--bg));
-  color: hsl(var(--accent) );
+  color: hsl(var(--accent));
 }
 
 .form-input:focus {
   outline: none;
-  box-shadow: 
-    0 0 0 .2em hsl(var(--bg) ), 
+  box-shadow:
+    0 0 0 .2em hsl(var(--bg)),
     0 0 0 .4em hsl(var(--accent) / .8);
 }
 
+/* Notes List*/
+.notes-list {
+  display: grid;
+  gap: 1em;
+  /* max-width: 40rem; */
+  margin-inline: auto;
+  padding-inline-start: 0%;
+}
