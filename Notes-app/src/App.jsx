@@ -10,6 +10,7 @@ import {
   deleteNoteAPI,
   updateNoteAPI
 } from './components/apiHelper';
+import ThemeBar from './components/ThemeBar';
 
 function App() {
   //const [notes, setNotes] = useLocalStorage('notes-storage', []); // Using custom hook to store notes in local storage
@@ -59,6 +60,7 @@ function App() {
 
   return (
     <div className='container'>
+      <ThemeBar />
       <header>
         <h1>My Notes</h1>
       </header>
