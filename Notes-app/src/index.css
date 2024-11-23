@@ -18,25 +18,34 @@
   /* Light theme */
   --bg--light: var(--_hue) 40% 85%;
   /* what is this? - It is a CSS function that creates a color value from a hue, saturation, and lightness. */
-  --txt--light: var(--_hue) 40% 7%;
+  --txt--light: var(--_hue) 30% 12%;
   /* the first value is the hue itself, the second value is saturation, and the third value is lightness. */
   --accent--light: var(--_hue) 55% 55%;
   --muted--light: var(--_hue) 40% 98%;
   /* --muted--light: calc(var(--_hue) + 190) 30% 99%; */
+  --secondary--light: calc(var(--_hue) - 175) 70% 60%;
 
   /* Dark theme */
   --bg--dark: var(--_hue) 20% 13%;
   --txt--dark: var(--_hue) 30% 88%;
-  --accent--dark: var(--_hue) 50% 50%;
+  --accent--dark: var(--_hue) 50% 45%;
   --muted--dark: var(--_hue) 40% 4%;
+  --secondary--dark: calc(var(--_hue) - 175) 45% 45%;
 
   /* Default theme - Dark*/
   --bg: var(--bg--dark);
   --txt: var(--txt--dark);
   --accent: var(--accent--dark);
   --muted: var(--muted--dark);
+  --secondary: var(--secondary--dark);
   color-scheme: dark;
 
+  /* Custom theme */
+  --bg--custom: 220 80% 75%;
+  --txt--custom: 220 30% 12%;
+  --accent--custom: 220 55% 55%;
+  --muted--custom: 220 40% 98%;
+  --secondary--custom: 220 70% 80%;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -49,6 +58,41 @@
 
 }
 
+:root[data-theme="light"] {
+  --bg: var(--bg--light);
+  --txt: var(--txt--light);
+  --accent: var(--accent--light);
+  --muted: var(--muted--light);
+  --secondary: var(--secondary--light);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: var(--bg--dark);
+  --txt: var(--txt--dark);
+  --accent: var(--accent--dark);
+  --muted: var(--muted--dark);
+  --secondary: var(--secondary--dark);
+  color-scheme: dark;
+}
+
+:root[data-theme="custom"] {
+  --bg: var(--bg--custom);
+  --txt: var(--txt--custom);
+  --accent: var(--accent--custom);
+  --muted: var(--muted--custom);
+  --secondary: var(--secondary--custom);
+  color-scheme: custom;
+}
+
+#root {
+  display: grid;
+  gap: 1.5em;
+  padding: 0;
+  margin: 0;
+  align-items: start;
+}
+
 /* prefers reduced motion*/
 @media (prefers-reduced-motion: reduce) {
   :root {
@@ -59,22 +103,18 @@
 
 @media screen and (max-width: 768px) {
   :root {
-    --_size: 1.3rem;
+    --_size: 2rem;
   }
 }
 
-html, body {
-  height: 100%;	
-  margin: 0;
-  padding: 0;
-}
 
 body {
+  min-height: 100vh;
+  justify-items: center;
   margin: 0;
   display: grid;
-  place-items: center;
+  line-height: 1.5;
   /* min-width: 320px; */
-  min-height: 100vh;
   /* what is vh? - vh is a CSS unit that represents the height of the viewport. 1vh is equal to 1% of the viewport height. */
   /* what is viewport? - The viewport is the user's visible area of a web page. */
   font-family: inherit;
@@ -94,6 +134,7 @@ h1 {
 }
 
 button {
+  display: grid;
   border-radius: 8px;
   border: none;
   padding: 0.6em;
@@ -104,6 +145,7 @@ button {
   transition: border-color 0.25s;
   color: inherit;
   font: inherit;
+  place-items: center;
   /* min-width: 2.5em;  */
   /* Adjust this value as needed to maintain the button size */
   /* box-shadow: 0 0 0 0.1em hsl(var(--accent)); */
@@ -127,7 +169,7 @@ button {
 
 .btn-secondary {
   /* background-color: hsl(var(--muted)); */
-  --accent: var(--muted);
+  --accent: var(--secondary);
   color: hsl(var(--txt));
 }
 
@@ -175,6 +217,19 @@ button:active {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--bg--dark);
+    --txt: var(--txt--dark);
+    --accent: var(--accent--dark);
+    --muted: var(--muted--dark);
+    color-scheme: dark;
+  }
+
+  a:hover {
+    color: hsl(var(--accent));
+  }
+}
 
 
 input,
@@ -183,11 +238,15 @@ label {
 }
 
 .container {
+  /* height: 100%; */
+  /* width: 100%; */
   /* margin-inline: max(calc((100vw - 70rem) / 2), 1.5rem); */
   display: grid;
   gap: 1.5vmax;
   /* what is vmax? - vmax is a CSS unit that represents the larger of the two: vw, vh. */
   /* text-align: center; */
+  align-items: start;
+  /* how to put everything that is inside the container in the top? - align-items: start; */
 }
 
 .input-wrapper {
@@ -196,6 +255,7 @@ label {
   gap: 0.5em;
   position: relative;
   margin-block-start: .6em;
+  max-height: 2.7em;
 }
 
 form {
@@ -263,4 +323,40 @@ form {
   /* max-width: 40rem; */
   margin-inline: auto;
   padding-inline-start: 0%;
+}
+
+.theme-bar {
+  display: flex;
+  padding-top: 0.7em;
+  gap: 1em;
+  justify-content: center;
+}
+
+.theme {
+  gap: 1em;
+  grid-auto-flow: column;
+  justify-content: center;
+  border-radius: calc(var(--_radius) * 6);
+  position: relative; 
+}
+
+.btn::after {
+  content:  attr(aria-label);
+  position: absolute;
+  top: calc(100% + 0.5em);
+  font-size: .8em;
+  min-width: max-content;
+  padding: .2em .5em;
+  border-radius: var(--_radius);
+  border: none;
+  background-color: hsl(var(--bg));
+  color: hsl(var(--txt));
+  box-shadow:
+    0 0 0 .2em hsl(var(--accent) / .95);
+  opacity: 0;
+  transition: opacity var(--_tspeed_fast) var(--_ttype_squish);
+}
+
+.btn:is(:hover, :focus-visible)::after {
+  opacity: 1;
 }
