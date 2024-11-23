@@ -46,6 +46,7 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
           <div className={styles['notes-group']}>
             <button
               className='btn'
+              aria-label='Update Note'
               onClick={() => handleUpdate(updatedNote.id, updatedNote)}
             >
               <CheckIcon
@@ -54,6 +55,7 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
             </button>
             <button
               className='btn btn-secondary'
+              aria-label='Cancel Update'
               onClick={() => setIsEditing(false)}
             >
               <XMarkIcon
@@ -66,20 +68,25 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
         <>
           <div className={styles['notes-group']}>
             <input
+              className={styles.checkbox}
               type='checkbox'
               id={updatedNote.id}
               onClick={() => handleToggleNote()}
+            />
+            <label
+              htmlFor={note.id}
+              className={styles.label}
             >
-            </input>
-            {/* <label
-            htmlFor={note.id}
-          > */}
-            <p>{updatedNote.details}</p>
-            {/* </label> */}
+              {updatedNote.details}
+              <p className={styles.checkmark}>
+                <CheckIcon style={{ width: '24px', height: '24px' }} />
+              </p>
+            </label>
           </div>
           <div className={styles['notes-group']}>
             <button
               className='btn'
+              aria-label='Edit Note'
               onClick={() => setIsEditing(true)}>
               <PencilSquareIcon
                 style={{ width: '24px', height: '24px' }}
@@ -87,6 +94,7 @@ const NoteItem = ({ note, deleteNote, updateNote, toggleNote }) => {
             </button>
             <button
               className='btn btn-secondary'
+              aria-label='Delete Note'
               onClick={handleDelete}
             >
               <TrashIcon
