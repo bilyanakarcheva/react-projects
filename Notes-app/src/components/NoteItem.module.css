@@ -18,7 +18,69 @@
     justify-content: center;
   }
 
-  @keyframes identifier {
+  .label {
+    position: relative;
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  .checkbox {
+    flex-shrink: 0; /* Prevents the checkbox from shrinking */
+    appearance: none; /* Removes the default checkbox */
+    -webkit-appearance: none; /* For Safari */
+    border-radius: var(--_radius); /* Makes the checkbox round */
+    width: 1.5em; /* Sets the width of the checkbox */
+    height: 1.5em; /* Sets the height of the checkbox */
+    background-color: hsl(var(--muted));
+    border: .1em solid hsl(var(--accent) / .7);
+    box-shadow: 
+      0 0 .5em hsl(var(--accent) / .1),
+      0 0 0 .1em hsl(var(--accent) / .5),
+      0 0 0 .12em hsl(var(--accent) / .7);
+    transition: box-shadow var(--_tspeed_fast) ease-in-out,
+      background-color 80ms ease-in-out;
+  }
+
+  .checkbox:is(:focus-visible, :hover) {
+    box-shadow: 
+      0 0 0 hsl(var(--bg)),
+      0 0 0 .2em hsl(var(--accent) / .4),
+      0 0 0 .23em hsl(var(--accent) / .2);
+  }
+
+  .checkbox:focus {
+    outline: none;
+  }
+
+  .checkmark {
+    content: '';
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    display: grid;
+    place-items: center;
+    top: 50%; /* Centers the svg vertically from the top of the paragraph, is overridden by transform */
+    color: hsl(var(--muted) );
+    border-radius: var(--_radius);
+    transform: translate3d(calc(-100% - 1.15em), -165%, 0);
+    transition: transform var(--_tspeed_fast) ease-in-out;
+  }
+
+  .checkmark svg {
+    width: .75em;
+    height: .75em;
+  }
+
+  .checkbox:checked {
+    background-color: hsl(var(--accent));
+  }
+
+  .checkbox:checked+label {
+    text-decoration: line-through;
+  }
+
+  /* @keyframes identifier {
     0% ,
     100% {
       opacity: 1;
@@ -28,5 +90,5 @@
       opacity: 0.5;
     }
     
-  }
+  } */
 
