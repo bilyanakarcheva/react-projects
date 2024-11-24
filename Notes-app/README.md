@@ -1,4 +1,9 @@
 # Notes App Project
+![Screenshot 2024-11-24 145430](https://github.com/user-attachments/assets/c4327ce3-b78d-4d21-b16b-ccf2f80f53ab)
+![Screenshot 2024-11-24 145529](https://github.com/user-attachments/assets/610bab55-1e39-410e-9d9c-d9722b1951fe)
+![Screenshot 2024-11-24 160101](https://github.com/user-attachments/assets/90eecf11-cf79-44bf-9af2-93c543c3aff3)
+
+
 
  ## About
 The Notes App is a full-stack project built with React, Node.js, and Express.js, showcasing seamless integration between frontend and backend technologies. It enables users to perform CRUD operations for managing their notes effectively. The backend handles RESTful APIs and server-side logic, while the frontend provides a dynamic, responsive, and visually appealing user experience styled with vanilla CSS and CSS variables. Additionally, the app features a customizable theme menu offering light, dark, and preset custom themes, emphasizing user personalization and design consistency.
