@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import {
     SunIcon,
     MoonIcon,
-    Cog6ToothIcon
+    Cog6ToothIcon,
+    CloudIcon
 } from "@heroicons/react/24/outline";
 
 const ThemeBar = () => {
@@ -46,12 +47,12 @@ const ThemeBar = () => {
                 </button>
                 <button
                     className="btn theme"
-                    aria-label="Custom Theme"
+                    aria-label="Feeling Blue Theme"
                     title="Custom Theme"
                     data-theme="custom"
                     onClick={handleThemeChange}
                 >
-                    <Cog6ToothIcon style={{ width: "24px", height: "24px" }} />
+                    <CloudIcon style={{ width: "24px", height: "24px" }} />
                 </button>
             </aside>
         </>
